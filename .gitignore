@@ -3,3 +3,5 @@
 ################################################################################
 
 /RTree/.vs/RTree
+/RTree/src/RTree.Business/obj
+/RTree/src/RTree.Data/obj
