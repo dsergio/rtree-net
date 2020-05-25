@@ -4,18 +4,15 @@ using System.Text;
 
 namespace RTree.Data
 {
-	public class LocationItem : FingerPrintEntityBase
+	public class Item : FingerPrintEntityBase
 	{
-		private int X { get; set; }
-		private int Y { get; set; }
+		public IList<IAttr> Attrs { get; } = new List<IAttr>();
 		public string Type { get => _Type; set => _Type = value ?? throw new ArgumentNullException(nameof(Type)); }
 		private string _Type = string.Empty;
 
-		public LocationItem(int x, int y, string type)
+		public Item(string type)
 		{
-			X = x;
-			Y = y;
-			Type = type;
+			Type = type ?? throw new ArgumentNullException(nameof(type));
 		}
 	}
 }
