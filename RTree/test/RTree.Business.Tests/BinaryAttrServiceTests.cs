@@ -21,7 +21,8 @@ namespace RTree.Business.Tests
         protected override Data.BinaryAttr CreateEntity()
             => new Data.BinaryAttr(
                 Guid.NewGuid().ToString(),
-                false
+                false,
+                new Data.BinaryAttrSet()
                 );
 
         protected override BinaryAttrInput CreateInputDto()

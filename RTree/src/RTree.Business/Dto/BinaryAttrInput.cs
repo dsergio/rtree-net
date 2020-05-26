@@ -11,6 +11,8 @@ namespace RTree.Business.Dto
         public string? Name { get; set; }
         [Required]
         public bool? Value { get; set; }
-        
+
+        [Required]
+        public int? BinaryAttrSetId { get; set; }
     }
 }

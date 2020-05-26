@@ -9,10 +9,34 @@ namespace RTree.Data
 		public string Name { get; set; }
 		public bool Value { get; set; }
 
-		public BinaryAttr(string name, bool value)
+#nullable disable
+		public BinaryAttrSet BinaryAttrSet { get; set; }
+#nullable enable
+		public int BinaryAttrSetId { get; set; }
+
+		public BinaryAttr()
+			: this("", false, 0)
+		{ }
+
+		public BinaryAttr(int id)
+			: this("", false, id)
+		{ }
+
+		
+		public BinaryAttr(string name, bool value, BinaryAttrSet binaryAttrSet) : this(name, value,
+			// Justification: There is no way to check for nullability with constructor chaining.
+#pragma warning disable CA1062 // Validate arguments of public methods          
+			binaryAttrSet.Id)
+#pragma warning restore CA1062 // Validate arguments of public methods
 		{
-			Name = name ?? throw new ArgumentNullException(nameof(name));
+			BinaryAttrSet = binaryAttrSet;
+		}
+
+		private BinaryAttr(string name, bool value, int binaryAttrSetId)
+		{
+			Name = name;
 			Value = value;
+			BinaryAttrSetId = binaryAttrSetId;
 		}
 	}
 }

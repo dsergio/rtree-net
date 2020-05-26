@@ -9,8 +9,8 @@ using RTree.Data;
 namespace RTree.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200525191149_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20200525211233_InitialDb")]
+    partial class InitialDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -24,8 +24,22 @@ namespace RTree.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("BinaryAttrSetId")
+                    b.Property<int>("BinaryAttrSetId")
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ModifiedBy")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("ModifiedOn")
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -47,8 +61,22 @@ namespace RTree.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Label")
                         .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ModifiedBy")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("ModifiedOn")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
@@ -58,9 +86,11 @@ namespace RTree.Data.Migrations
 
             modelBuilder.Entity("RTree.Data.BinaryAttr", b =>
                 {
-                    b.HasOne("RTree.Data.BinaryAttrSet", null)
+                    b.HasOne("RTree.Data.BinaryAttrSet", "BinaryAttrSet")
                         .WithMany("Attributes")
-                        .HasForeignKey("BinaryAttrSetId");
+                        .HasForeignKey("BinaryAttrSetId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

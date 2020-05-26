@@ -7,6 +7,8 @@ namespace RTree.Business.Dto
 	public class BinaryAttrSet : BinaryAttrSetInput, IEntity
 	{
 		public int Id { get; set; }
-		public List<BinaryAttr> BinaryAttrs { get; } = new List<BinaryAttr>();
+		//public List<BinaryAttr> BinaryAttrs { get; } = new List<BinaryAttr>();
+
+		public IList<BinaryAttr> Attributes { get; set; }
 	}
 }

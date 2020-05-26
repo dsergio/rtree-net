@@ -12,7 +12,7 @@ namespace RTree.Data.Tests
 		{
 			// Arrange
 			BinaryAttrSet set = new BinaryAttrSet();
-			BinaryAttr attr = new BinaryAttr("Test1", true);
+			BinaryAttr attr = new BinaryAttr("Test1", true, set);
 
 			// Act
 			set.AddAttribute(attr);
@@ -27,7 +27,7 @@ namespace RTree.Data.Tests
 		{
 			// Arrange
 			BinaryAttrSet set = new BinaryAttrSet();
-			BinaryAttr attr = new BinaryAttr("Test1", true);
+			BinaryAttr attr = new BinaryAttr("Test1", true, set);
 
 			// Act
 			set.AddAttribute(attr);
@@ -43,7 +43,8 @@ namespace RTree.Data.Tests
 			// Arrange
 			using (var dbContext = new ApplicationDbContext(Options))
 			{
-				dbContext.BinaryAttr.Add(new BinaryAttr("Test3", true));
+				BinaryAttrSet set = new BinaryAttrSet();
+				dbContext.BinaryAttr.Add(new BinaryAttr("Test3", true, set));
 				await dbContext.SaveChangesAsync().ConfigureAwait(false);
 			}
 			// Act

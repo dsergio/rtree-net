@@ -36,8 +36,10 @@ namespace RTree.Api
 
             services.AddScoped<IBinaryAttrService, BinaryAttrService>();
             services.AddScoped<IBinaryAttrSetService, BinaryAttrSetService>();
+
             
-			services.AddDbContext<ApplicationDbContext>(options =>
+
+            services.AddDbContext<ApplicationDbContext>(options =>
 			options.EnableSensitiveDataLogging()
 				.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
 

@@ -22,7 +22,7 @@ namespace RTree.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("BinaryAttrSetId")
+                    b.Property<int>("BinaryAttrSetId")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("CreatedBy")
@@ -84,9 +84,11 @@ namespace RTree.Data.Migrations
 
             modelBuilder.Entity("RTree.Data.BinaryAttr", b =>
                 {
-                    b.HasOne("RTree.Data.BinaryAttrSet", null)
+                    b.HasOne("RTree.Data.BinaryAttrSet", "BinaryAttrSet")
                         .WithMany("Attributes")
-                        .HasForeignKey("BinaryAttrSetId");
+                        .HasForeignKey("BinaryAttrSetId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

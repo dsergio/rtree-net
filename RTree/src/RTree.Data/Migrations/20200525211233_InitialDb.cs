@@ -1,8 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace RTree.Data.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class InitialDb : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -12,6 +13,10 @@ namespace RTree.Data.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
+                    CreatedBy = table.Column<string>(nullable: false),
+                    CreatedOn = table.Column<DateTime>(nullable: false),
+                    ModifiedBy = table.Column<string>(nullable: false),
+                    ModifiedOn = table.Column<DateTime>(nullable: false),
                     Label = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
@@ -25,9 +30,13 @@ namespace RTree.Data.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
+                    CreatedBy = table.Column<string>(nullable: false),
+                    CreatedOn = table.Column<DateTime>(nullable: false),
+                    ModifiedBy = table.Column<string>(nullable: false),
+                    ModifiedOn = table.Column<DateTime>(nullable: false),
                     Name = table.Column<string>(nullable: false),
                     Value = table.Column<bool>(nullable: false),
-                    BinaryAttrSetId = table.Column<int>(nullable: true)
+                    BinaryAttrSetId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -37,7 +46,7 @@ namespace RTree.Data.Migrations
                         column: x => x.BinaryAttrSetId,
                         principalTable: "BinaryAttrSet",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
